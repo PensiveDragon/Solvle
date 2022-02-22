@@ -20,11 +20,10 @@ public class main {
         // Extended goal - create a rudimentary interface between world and Solvle (Screen capture processing?)
         // Extended info - find list of how commonly used words
 
+        // .filter(it -> !it.contains("f"))
         // .filter(it -> it.contains("r"))
         // .filter(it -> it.charAt(0) != 'r')
-        // .filter(it -> !it.contains("f"))
         // .filter(it -> it.charAt(2) == 'a')
-
 
 
         try (Stream<String> stream = Files.lines(Paths.get("words.txt"))) {
@@ -39,53 +38,18 @@ public class main {
 
 
             filteredResults = filteredResults.stream()
-                    .filter(it -> it.charAt(2) == 'a')
-                    .filter(it -> !it.contains("f"))
-                    .filter(it -> !it.contains("l"))
-                    .filter(it -> !it.contains("m"))
-                    .filter(it -> !it.contains("e"))
+                    .filter(it -> it.charAt(1) == 'h')   /* Correct letter, correct place*/
 
-                    .collect(Collectors.toList());
+                    .filter(it -> it.contains("i"))      /* Correct letter */
+                    .filter(it -> it.charAt(4) != 'k')   /* Letter in wrong place */
 
-            filteredResults.forEach(System.out::println);
-            System.out.println(filteredResults.size());
-            System.out.println();
+                    .filter(it -> !it.contains("b"))     /* Wrong letter */
 
-
-            filteredResults = filteredResults.stream()
-                    .filter(it -> it.charAt(1) == 'h')
-                    .filter(it -> !it.contains("s"))
-                    .filter(it -> !it.contains("r"))
-                    .filter(it -> !it.contains("p"))
-
-                    .collect(Collectors.toList());
-
-            filteredResults.forEach(System.out::println);
-            System.out.println(filteredResults.size());
-            System.out.println();
-
-
-            filteredResults = filteredResults.stream()
-                    .filter(it -> !it.contains("i"))
-                    .filter(it -> !it.contains("n"))
-                    .filter(it -> it.contains("c"))
-                    .filter(it -> it.charAt(0) != 'c')
                     .collect(Collectors.toList());
 
             filteredResults.forEach(System.out::println);
             System.out.println(filteredResults.size());
             System.out.println();
         }
-
-
-
-//
-//        stream.filter(it -> it.length() == 5)
-//                .filter(it -> Character.isLowerCase(it.charAt(0)))
-//                .forEach(System.out::println);
-
-
     }
-
-    public static void wordSorter() {}
 }
